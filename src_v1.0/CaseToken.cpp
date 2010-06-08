@@ -1,0 +1,2 @@
+class CaseToken : public KeywordToken {
+};

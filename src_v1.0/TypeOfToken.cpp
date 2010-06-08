@@ -1,0 +1,2 @@
+class TypeOfToken : public KeywordToken {
+};

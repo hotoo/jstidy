@@ -1,0 +1,2 @@
+class StringLiteralToken : public LiteralToken {
+};

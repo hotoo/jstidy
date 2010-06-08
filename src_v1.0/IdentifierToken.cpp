@@ -1,0 +1,2 @@
+class IdentifierToken : public BaseToken {
+};

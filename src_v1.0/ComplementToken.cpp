@@ -1,0 +1,2 @@
+class ComplementToken : public OperatorToken {
+};

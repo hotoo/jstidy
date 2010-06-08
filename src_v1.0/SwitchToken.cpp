@@ -1,0 +1,2 @@
+class SwitchToken : public KeywordToken {
+};

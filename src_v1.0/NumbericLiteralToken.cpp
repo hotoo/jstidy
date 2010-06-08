@@ -1,0 +1,2 @@
+class NumbericLiteralToken : public LiteralToken {
+};

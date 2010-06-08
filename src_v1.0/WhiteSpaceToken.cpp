@@ -1,0 +1,2 @@
+class WhiteSpaceToken : public BaseToken {
+};

@@ -1,0 +1,2 @@
+class VoidToken : public KeywordToken {
+};

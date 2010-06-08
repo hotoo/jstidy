@@ -1,0 +1,2 @@
+class BitwiseAndAssignToken : public OperatorToken {
+};

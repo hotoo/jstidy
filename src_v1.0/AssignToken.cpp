@@ -1,0 +1,2 @@
+class AssignToken : public OperatorToken {
+};

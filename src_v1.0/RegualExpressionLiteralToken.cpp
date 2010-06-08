@@ -1,0 +1,2 @@
+class RegualExpressionLiteralToken : public LiteralToken {
+};

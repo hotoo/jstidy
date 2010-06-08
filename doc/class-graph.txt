@@ -1,0 +1,12 @@
+F:\yangku\StronwebSate\StronwebSate\Script\Stronweb.Script.Compactors.JsCompactor\AjaxControlToolkit\JavaScript\Internal
+
+SYMBOL
+ |-- TOKEN
+ |    |-- BaseToken
+ |    |    |-- FutureReservedWordToken
+ |    |    |    |-- AbstractToken
+ |    |-- OperatorToken
+ |    |    |-- AssignToken
+ |    |    |-- BitwiseAndAssignToken
+ |    |    |-- BitwiseAndToken
+ |    |    |-- BitwiseOrAssignToken

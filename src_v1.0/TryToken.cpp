@@ -1,0 +1,2 @@
+class TryToken : public KeywordToken {
+};

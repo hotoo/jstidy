@@ -1,0 +1,2 @@
+class FinallyToken : public KeywordToken {
+};

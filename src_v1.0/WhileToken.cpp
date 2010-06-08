@@ -1,0 +1,2 @@
+class WhileToken : public KeywordToken {
+};

@@ -1,0 +1,2 @@
+class FinalToken : public KeywordToken {
+};

@@ -1,0 +1,2 @@
+class InToken : public KeywordToken {
+};

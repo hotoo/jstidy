@@ -1,0 +1,2 @@
+class IfToken : public KeywordToken {
+};

@@ -1,0 +1,2 @@
+class LiteralToken : public BaseToken {
+};

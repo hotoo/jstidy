@@ -1,0 +1,2 @@
+class BitwiseXOrAssignToken : public OperatorToken {
+};

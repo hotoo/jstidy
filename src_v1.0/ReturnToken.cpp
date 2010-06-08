@@ -1,0 +1,2 @@
+class ReturnToken : public KeywordToken {
+};

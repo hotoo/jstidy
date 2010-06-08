@@ -1,0 +1,2 @@
+class DefaultToken : public KeywordToken {
+};
