@@ -45,7 +45,7 @@ BaseToken * createToken(string text){
     char c=text.at(0);
 
     // Comment.
-    if(("/*"==s2 && "*/"==e2) || "//"==s2){return new CommentToken(text);}
+    if(("/*"==s2 && "*/"==e2) || "//"==s2){return new CommentToken(text, 0);}
     // Keyword.
     if("break"==text){return new BreakToken(text);}
     if("case"==text){return new CaseToken(text);}
@@ -81,14 +81,14 @@ BaseToken * createToken(string text){
         return new RegularExpressionLiteralToken(text);
     }
     // String Literal.
-    if(("'"==s1 && "'"==e1) || ("\""==s1 && "\""==e1)){return new StringLiteralToken(text);}
+    if(("'"==s1 && "'"==e1) || ("\""==s1 && "\""==e1)){return new StringLiteralToken(text, 0);}
     // Null.
     if("null"==text){return new NullLiteralToken(text);}
     // Whitespace.
     //if(" "==s1 || "\t"==s1){return new WhiteSpaceToken(text);}
     if(' '==c || '\t'==c){return new WhiteSpaceToken(text);}
     // LineTerminator.
-    if("\r"==s1 || "\n"==s1){return new LineTerminatorToken(text);}
+    if("\r"==s1 || "\n"==s1){return new LineTerminatorToken(text, 1);}
     // Operator.
     if("="==text){return new AssignToken(text);}
     if("&="==text){return new BitwiseAndAssignToken(text);}

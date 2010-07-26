@@ -45,6 +45,7 @@ private:
     char lastChar, stringQuote;
     int escapeLen;
     int line, cols; // current line number.
+    int lines; // current token cross lines.
     // lastStatus is the Last Valid Status.
     PARSE_STATUS status, lastStatus;
     // Last Valid Status List.

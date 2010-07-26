@@ -41,14 +41,21 @@ public:
 };
 
 class CommentToken            : public BaseToken{
+protected:
+    int _lines;
 public:
     CommentToken(){
         _text = "<CommentToken>";
+        _lines = 0;
         _name = "CommentToken";
     }
-    CommentToken(string text){
+    CommentToken(string text, int lines){
         _text = text;
+        _lines = lines;
         _name = "CommentToken";
+    }
+    int getLines(){
+        return _lines;
     }
 };
 class FutureReservedWordToken : public BaseToken{
@@ -85,15 +92,22 @@ public:
     }
 };
 class LineTerminatorToken     : public BaseToken{
+protected:
+    int _lines;
 public:
     LineTerminatorToken(){
         _text = "\r";
+        _lines = 0;
         _name = "LineTerminatorToken";
     }
-    LineTerminatorToken(string text){
+    LineTerminatorToken(string text, int lines){
         if('\r'!=text.at(0) && '\n'!=text.at(0)){throw string("Parse error: "+text+" is not <LineTerminatorToken>.");}
         _text = text;
+        _lines = lines;
         _name = "LineTerminatorToken";
+    }
+    int getlines(){
+        return _lines;
     }
 };
 class LiteralToken            : public BaseToken{
@@ -837,19 +851,26 @@ public:
     }
 };
 class StringLiteralToken            : public LiteralToken{
+protected:
+    int _lines;
 public:
     StringLiteralToken(){
         _text = "<StringLiteralToken>";
+        _lines = 0;
         _name = "StringLiteralToken";
     }
-    StringLiteralToken(string text){
+    StringLiteralToken(string text, int lines){
         //if(('"'!=text.at(0) && '"'!=text.at(text.length()-1)) ||
           //('\''!=text.at(0) && '\''!=text.at(text.length()-1))){
         if('"'!=text.at(0) && '\''!=text.at(0)){
             throw string("Parse error: "+text+" is not <StringLiteralToken>.");
         }
         _text = text;
+        _lines = lines;
         _name = "StringLiteralToken";
+    }
+    int getLines(){
+        return _lines;
     }
 };
 

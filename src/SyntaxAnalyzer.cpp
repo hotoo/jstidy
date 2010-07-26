@@ -4,12 +4,12 @@ list<BaseToken *> SyntaxAnalyzer::minifyToken(list<BaseToken *> tokens){
     list<BaseToken *> mins;
     list<BaseToken *>::iterator it;
     list<BaseToken *>::iterator last=NULL;
-    string text = "";
     for(it=tokens.begin(); it!=tokens.end(); it++){
         if(dynamic_cast<CommentToken *>(*it)){
             if(mins.size()>0 && dynamic_cast<WhiteSpaceToken *>(*last)){
                 mins.pop_back();
-                last = mins.end();
+                if(mins.size()>0){last = mins.end();}
+                else{last = NULL;}
             }
             ;
         }else if(dynamic_cast<WhiteSpaceToken *>(*it)){
@@ -24,15 +24,26 @@ list<BaseToken *> SyntaxAnalyzer::minifyToken(list<BaseToken *> tokens){
         }else if(dynamic_cast<LineTerminatorToken *>(*it)){
             if(mins.size()>0 && dynamic_cast<WhiteSpaceToken *>(*last)){
                 mins.pop_back();
-                last = mins.end();
+                if(mins.size()>0){last = mins.end();}
+                else{last = NULL;}
             }
-            mins.push_back(*it);
-            last = it;
+
+            if(last==NULL ||
+                    dynamic_cast<OperatorToken *>(*last) ||
+                    dynamic_cast<PunctuationToken *>(*last)
+                    ){
+                ;
+            }else{
+                mins.push_back(*it);
+                last = it;
+            }
         }else if(dynamic_cast<OperatorToken *>(*it) ||
                 dynamic_cast<PunctuationToken *>(*it)){
-            if(mins.size()>0 && dynamic_cast<WhiteSpaceToken *>(*last)){
+            if(mins.size()>0 && (dynamic_cast<WhiteSpaceToken *>(*last) ||
+                    dynamic_cast<LineTerminatorToken *>(*last))){
                 mins.pop_back();
-                last = mins.end();
+                if(mins.size()>0){last = mins.end();}
+                else{last = NULL;}
             }
             mins.push_back(*it);
             last = it;

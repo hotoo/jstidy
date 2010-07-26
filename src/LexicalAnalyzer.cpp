@@ -4,6 +4,7 @@ LexicalAnalyzer::LexicalAnalyzer(){
     escapeLen = 0;
     line = 1;
     cols = 0;
+    lines = 0;
     status = ST_NONE;
     lastStatus = ST_NONE;
     stateList.clear();
@@ -32,15 +33,34 @@ void LexicalAnalyzer::parseChar(char c){
             switch(status){
             case ST_SINGLE_LINE_COMMENT:
                 curr.push_back(c);
-                tokens.push_back(createToken(curr));
+                //!tokens.push_back(createToken(curr));
+                tokens.push_back(new CommentToken(curr, 1));
                 curr.clear();
+                lines = 0;
                 status = ST_NONE;
                 break;
             case ST_MULTI_LINE_COMMENT:
                 curr.push_back(c);
+                if('\n'==c && '\r'!=lastChar){
+                    // Unix    \n
+                    lines++;
+                }else if('\r'==c){
+                    // Windows \r\n
+                    // Mac     \r
+                    lines++;
+                }
                 break;
             case ST_LINE_TERMINATOR:
                 curr.push_back(c);
+
+                if('\n'==c && '\r'!=lastChar){
+                    // Unix    \n
+                    lines++;
+                }else if('\r'==c){
+                    // Windows \r\n
+                    // Mac     \r
+                    lines++;
+                }
                 break;
             case ST_PUNCTUATION:
             case ST_OPERATOR:
@@ -54,12 +74,21 @@ void LexicalAnalyzer::parseChar(char c){
                 curr.clear();
 
                 curr.push_back(c);
+                lines++;
                 status = ST_LINE_TERMINATOR;
                 break;
             case ST_STRING:
                 // Support multiline string by the last '\'
                 if('\\'==lastChar && 0!=(escapeLen%2)){
                     curr = curr.substr(0, curr.length()-1);
+                    if('\n'==c && '\r'!=lastChar){
+                        // Unix    \n
+                        lines++;
+                    }else if('\r'==c){
+                        // Windows \r\n
+                        // Mac     \r
+                        lines++;
+                    }
                 }else if('\r'==lastChar && '\n'==c){
                     // for window \r\n, continue but do nothing.
                 }else{
@@ -69,6 +98,7 @@ void LexicalAnalyzer::parseChar(char c){
                 break;
             case ST_NONE:
                 curr.push_back(c);
+                lines++;
                 status = ST_LINE_TERMINATOR;
                 break;
             case ST_REGEXP:
@@ -348,8 +378,10 @@ void LexicalAnalyzer::parseChar(char c){
             case ST_MULTI_LINE_COMMENT:
                 if('*'==lastChar){
                     curr.push_back(c);
-                    tokens.push_back(createToken(curr));
+                    //tokens.push_back(createToken(curr));
+                    tokens.push_back(new CommentToken(curr, lines));
                     curr.clear();
+                    lines = 0;
                     status = ST_NONE;
                 }else{
                     curr.push_back(c);
@@ -987,8 +1019,10 @@ void LexicalAnalyzer::parseChar(char c){
                 //TODO: multiline string.
                 if(c==stringQuote && ('\\'!=lastChar || ('\\'==lastChar && 0==(escapeLen%2)))){
                     curr.push_back(c);
-                    tokens.push_back(createToken(curr));
+                    //tokens.push_back(createToken(curr));
+                    tokens.push_back(new StringLiteralToken(curr, lines));
                     lastToken = createToken(curr);
+                    lines = 0;
                     curr.clear();
                     stringQuote = '\0';
                     status = ST_NONE;
@@ -1335,6 +1369,7 @@ void LexicalAnalyzer::clear(){
     escapeLen = 0;
     line = 1;
     cols = 0;
+    lines = 0;
     status = ST_NONE;
     lastStatus = ST_NONE;
     tokens.clear();
