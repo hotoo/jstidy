@@ -1,2 +1,0 @@
-class ElseToken : public KeywordToken {
-};

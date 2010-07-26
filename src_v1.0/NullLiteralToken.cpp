@@ -1,2 +1,0 @@
-class NullLiteralToken : public BaseToken {
-};

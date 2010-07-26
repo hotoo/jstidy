@@ -1,2 +1,0 @@
-class CatchToken : public KeywordToken {
-};

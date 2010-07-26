@@ -1,2 +1,0 @@
-class CommentToken : public BaseToken {
-};

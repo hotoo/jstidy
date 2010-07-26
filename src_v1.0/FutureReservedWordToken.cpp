@@ -1,2 +1,0 @@
-class FutureReservedWordToken : public BaseToken {
-};

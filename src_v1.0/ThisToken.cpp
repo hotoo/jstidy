@@ -1,2 +1,0 @@
-class ThisToken : public KeywordToken {
-};

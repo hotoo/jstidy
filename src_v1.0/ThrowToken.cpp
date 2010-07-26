@@ -1,2 +1,0 @@
-class ThrowToken : public KeywordToken {
-};

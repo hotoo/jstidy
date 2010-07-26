@@ -1,2 +1,0 @@
-class AssignToken : public OperatorToken {
-};

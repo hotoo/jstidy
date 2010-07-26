@@ -1,2 +1,0 @@
-class DivideAssignToken : public OperatorToken {
-};

@@ -1,2 +1,0 @@
-class FunctionToken : public KeywordToken {
-};

@@ -1,2 +1,0 @@
-class VarToken : public KeywordToken {
-};

@@ -1,2 +1,0 @@
-class TOKEN : public SYMBOL {
-};

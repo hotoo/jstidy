@@ -1,2 +1,0 @@
-class BreakToken : public KeywordToken {
-};

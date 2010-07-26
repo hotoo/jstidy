@@ -1,2 +1,0 @@
-class DoToken : public KeywordToken {
-};

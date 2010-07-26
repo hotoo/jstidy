@@ -1,2 +1,0 @@
-class BitwiseOrAssignToken : public OperatorToken {
-};

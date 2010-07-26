@@ -1,2 +1,0 @@
-class DeleteToken : public KeywordToken {
-};

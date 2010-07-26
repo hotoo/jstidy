@@ -1,2 +1,0 @@
-class BooleanLiteralToken : public LiteralToken {
-};
