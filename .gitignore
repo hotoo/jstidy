@@ -1,0 +1,15 @@
+src/jstidy.exe
+src/check.html
+src/jquery.js
+src/jstidy.js
+src/logo.gif
+src/logo.png
+src/multi-string.js
+src/OUT.js
+src/quote-comment.js
+src/regexp.js
+src/simple.js
+src/yui.js
+.settings
+.cproject
+.project
